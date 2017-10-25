@@ -73,7 +73,10 @@ class WebDriver:
             print("Looks like that site isn't responding!  Please check your intenet connection and try again.")
             time.sleep(5)
             custom_quit()
-        self.web_drivers = plistlib.loads(plist_data)
+        if sys.version_info >= (3, 0):
+            self.web_drivers = plistlib.loads(plist_data)
+        else:
+            self.web_drivers = plistlib.readPlistFromString(plist_data)
 
     def get_system_info(self):
         self.installed_version = "Not Installed!"
